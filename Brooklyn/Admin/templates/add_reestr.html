@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+
+            <small>preview of simple tables</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Call Center</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box box-primary">
+                  <div class="box-body box-profile">
+                    <h3 class="profile-username text-center">Добавление реестра</h3>
+                    <form action="{% url 'parse_excel_url' %}" method="post" enctype="multipart/form-data">
+                        Select file to upload:
+                        <input type="file" name="files" id="fileToUpload">
+                        <input style="margin-top:20px;" class="btn btn-primary btn-sm" type="submit" value="Добавить" name="submit">
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+        </div>
+    </section>
+
+
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box box-primary">
+                  <div class="box-body box-profile">
+                    <h3 class="profile-username text-center">Добавление контакты реестра</h3>
+                    <form action="{% url 'parse_excel_contact_url' %}" method="post" enctype="multipart/form-data">
+                        Select file to upload:
+                        <input type="file" name="files" id="fileToUpload">
+                        <input style="margin-top:20px;" class="btn btn-success btn-sm" type="submit" value="Добавить" name="submit">
+                    </form>
+                    <!-- <a href="#" style="margin-top:20px;" class="btn btn-primary btn-block"><b>Добавить</b></a> -->
+
+                  </div>
+                </div>
+              </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

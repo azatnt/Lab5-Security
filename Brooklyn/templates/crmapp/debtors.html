@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Debtors
+            <small>preview of simple tables</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <!-- <li><a href="#">Debtors</a></li> -->
+            <li class="active">Debtors</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Filter</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <form id="search" action="" method="GET">
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ debtorsFilter.form.surname.label_tag}}
+                                    {% render_field debtorsFilter.form.surname class="form-control" %}
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ debtorsFilter.form.firstname.label_tag}}
+                                    {% render_field debtorsFilter.form.firstname class="form-control" %}
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ debtorsFilter.form.middlename.label_tag}}
+                                    {% render_field debtorsFilter.form.middlename class="form-control" %}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Data Table With Full Features</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="dataTables_wrapper form-inline dt-bootstrap" id="example1_wrapper">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered dataTable table-hover example1">
+                                        <thead>
+                                        <tr role="row">
+                                            <th>#
+                                            </th>
+                                            <th>Debtor id
+                                            </th>
+                                            <th>Lastname
+                                            </th>
+                                            <th>Firstname
+                                            </th>
+                                            <th>Middlename
+                                            </th>
+                                            <th>IIN
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for debtor in debtors %}
+                                        <tr class="even" role="row">
+                                            <td>{{ forloop.counter }}</td>
+                                            <td class="sorting_1">{{ debtor.id_debtor }}</td>
+                                            <td><a href = "debtor_info?debtor_id={{ debtor.id_debtor }}">{{ debtor.surname }}</a></td>
+                                            <td>{{ debtor.firstname }}</td>
+                                            <td>{{ debtor.middlename }}</td>
+                                            <td>{{ debtor.iin }}</td>
+                                        </tr>
+                                        {% endfor %}   
+
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th colspan="1" rowspan="1">#</th>
+                                            <th colspan="1" rowspan="1">Debtor id</th>
+                                            <th colspan="1" rowspan="1">Lastname</th>
+                                            <th colspan="1" rowspan="1">Firstname</th>
+                                            <th colspan="1" rowspan="1">Middlename</th>
+                                            <th colspan="1" rowspan="1">IIN</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div aria-live="polite" class="dataTables_info" id="example1_info" role="status">
+                                        Showing
+                                        1 to 100 of {{debtors.paginator.num_pages}}
+                                        entries
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                        {% if debtors.has_other_pages %}
+                                        <ul class="pagination">
+                                            {% if debtors.has_previous %}
+                                            <li class="paginate_button previous" id="example1_previous"><a
+                                                    aria-controls="example1"
+                                                    data-dt-idx="0"
+                                                    href="{{ request.get_full_path }}&page={{ debtors.previous_page_number }}"
+                                                    tabindex="0">Previous</a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button previous disabled" id="example1_previous"><a
+                                                    aria-controls="example1"
+                                                    data-dt-idx="0"
+                                                    tabindex="0">Previous</a>
+                                            </li>
+                                            {% endif %}
+                                            <li class="paginate_button ">
+                                                <span >
+                                                    Page {{ debtors.number }} of {{ debtors.paginator.num_pages }}.
+                                                </span>
+                                            </li>
+                                            {% if debtors.has_next %}
+                                            <li class="paginate_button next" id="example1_next"><a
+                                                    aria-controls="example1"
+                                                    data-dt-idx="0"
+                                                    href="{{ request.get_full_path }}&page={{ debtors.next_page_number }}"
+                                                    tabindex="0">Next</a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button next disabled" id="example1_next"><a
+                                                    aria-controls="example1"
+                                                    data-dt-idx="0"
+                                                    tabindex="0">Next</a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+</div>
+{% endblock content %}

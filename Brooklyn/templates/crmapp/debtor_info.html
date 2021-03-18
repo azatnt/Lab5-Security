@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Call Center
+            <small>preview of simple tables</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <!-- <li><a href="#">Debtors</a></li> -->
+            <li class="active">Call Center</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            
+            <<div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="box box-primary">
+                  <div class="box-body box-profile">
+                    <!--img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture"-->
+      
+                    <h3 class="profile-username text-center">{{ debtor.full_name }}</h3>
+      
+                    <!--p class="text-muted text-center">Software Engineer</p-->
+      
+                    <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <b>ID</b> <a class="pull-right">{{ debtor.id_debtor }}</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>BithDate</b> <a class="pull-right">{{ debtor.birth_date }}</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>IIN</b> <a class="pull-right">{{ debtor.iin }}</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>Region</b> <a class="pull-right">{{ debtor_data.id_region }}</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>AgrNum</b> <a class="pull-right">{{ debtor_data.agr_num }}</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>ProductType</b> <a class="pull-right">{{ debtor_data.iin }}</a>
+                      </li>
+                      <li class="list-group-item">
+                        <b>DebtStatus</b> <a class="pull-right">{{ debtor.debtor_status }}</a>
+                      </li>
+                    </ul>
+      
+                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+      
+              </div>
+
+        </div>
+    </section>
+
+</div>
+
+{% endblock content %}
